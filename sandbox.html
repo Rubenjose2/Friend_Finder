@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="EN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title Page</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <h1 class="text-center">Hello World</h1>
+
+
+
+    <div class="container">
+        <form role="form" id="needs-validation">
+            <legend>Form title</legend>
+
+            <div class="form-group">
+                <label for="input 1">Name</label>
+                <input type="text" class="form-control" id="1">
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            </div>
+            <div class="form-group">
+                <label for="input 2">Telephone</label>
+                <input type="text" class="form-control" id="2">
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+        </form>
+    </div>
+
+
+    <script>
+        $("#submit").on("click", function(event) {
+            event.preventDefault();
+            var name = $("#1").val();
+            if (name == "") {
+                $(".form-group").addClass("has-error has-feedback")
+            } else {
+                $(".form-group").removeClass("has-error has-feedback")
+                console.log(name);
+            }
+        });
+    </script>
+
+</body>
+
+</html>

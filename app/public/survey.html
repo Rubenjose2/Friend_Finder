@@ -34,10 +34,12 @@
                     <div class="form-group">
                         <label for="name">Name (Required)</label>
                         <input type="text" class="form-control" id="name" required>
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
                     </div>
                     <div class="form-group">
                         <label for="photo-link">Link to Photo Image (Required)</label>
                         <input type="text" class="form-control" id="photo_link" required>
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
                     </div>
                     <!-- Second Section Quiz part -->
                     <legend>Quiz Questions</legend>
@@ -225,28 +227,33 @@
                 $("#q10").val().trim()
             ]
         };
-        console.log(form);
-        $.post("/api/friendTable", form, function(data) {
-            if (data) {
-                $("#popup").modal();
-                $("#name_friend").append(data[0]);
-                $(".img-responsive").attr("src", data[1]);
-                console.log(data);
+        if (form.name == "" || form.photo == "") {
+            $(".form-group").addClass("has-error has-feedback")
+        } else {
+            console.log(form);
+            $.post("/api/friendTable", form, function(data) {
+                if (data) {
+                    $("#popup").modal();
+                    $("#name_friend").append(data[0]);
+                    $(".img-responsive").attr("src", data[1]);
+                    $(".form-group").removeClass("has-error has-feedback")
+                    console.log(data);
 
-            }
-        });
+                }
+            });
 
-        $("#name").val("");
-        $("#photo_link").val("");
-        $("#q1").val("");
-        $("#q2").val("");
-        $("#q3").val("");
-        $("#q4").val("");
-        $("#q5").val("");
-        $("#q6").val("");
-        $("#q7").val("");
-        $("#q8").val("");
-        $("#q9").val("");
-        $("#q10").val("");
+            $("#name").val("");
+            $("#photo_link").val("");
+            $("#q1").val("");
+            $("#q2").val("");
+            $("#q3").val("");
+            $("#q4").val("");
+            $("#q5").val("");
+            $("#q6").val("");
+            $("#q7").val("");
+            $("#q8").val("");
+            $("#q9").val("");
+            $("#q10").val("");
+        }
     });
 </script>
