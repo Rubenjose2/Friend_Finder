@@ -160,6 +160,7 @@
                                     <option value="4">4</option>
                                     <option value="5">5 (Strong Agree)</option>
                                        </select>
+
                     </div>
                     <div>
                         <p></p>
@@ -178,7 +179,13 @@
                                 <h4 class="modal-title">Your Best Match</h4>
                             </div>
                             <div class="modal-body">
+                                <h2>We Find you a Best Friend Match</h2>
+                                <div>
+                                    <h3> Name: <span id="name_friend"></span></h3>
 
+                                    <img src="#" class="img-responsive" alt="Image">
+
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -206,7 +213,7 @@
             name: $("#name").val().trim(),
             photo: $("#photo_link").val().trim(),
             score: [
-                $("#q1").val().trim(),
+                $("#q1").val(),
                 $("#q2").val().trim(),
                 $("#q3").val().trim(),
                 $("#q4").val().trim(),
@@ -222,7 +229,9 @@
         $.post("/api/friendTable", form, function(data) {
             if (data) {
                 $("#popup").modal();
-                console.log("data added");
+                $("#name_friend").append(data[0]);
+                $(".img-responsive").attr("src", data[1]);
+                console.log(data);
 
             }
         });
